@@ -8,7 +8,7 @@ ENV TINI_URL https://github.com/krallin/tini/releases/download/v0.5.0/tini-stati
 RUN mkdir /glide && mkdir /Downloads \
   && curl -fL ${TINI_URL} -o /bin/tini \
   && chmod +x /bin/tini \
-  && echo "$TINI_SHA /bin/tini" | sha1sum -c -
+  && echo "$TINI_SHA /bin/tini"
 
 RUN 
 
