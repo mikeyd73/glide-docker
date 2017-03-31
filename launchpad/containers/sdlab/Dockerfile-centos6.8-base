@@ -1,0 +1,8 @@
+FROM centos:6.8
+MAINTAINER vitaliy.chupinin <vitaliy.chupinin@service-now.com>
+
+COPY SNC-syseng.repo /etc/yum.repos.d/
+RUN yum install -y epel-release
+RUN yum groupinstall -y "Development Tools"
+RUN yum install -y wget vim curl unzip openssh-server openssl-devel pcre-devel openldap-devel supervisor xorg-x11-server-utils  xorg-x11-server-Xvfb firefox monitorix x11vnc java-1.8.0-openjdk-src.x86_64 perl glibc libaio
+RUN chkconfig monitorix on

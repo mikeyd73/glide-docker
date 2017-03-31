@@ -1,0 +1,7 @@
+#SNC Custom Packages
+[snc-syseng]
+name=SNC-syseng
+baseurl=http://repo/syseng/6/$basearch/
+gpgcheck=0
+enabled=1
+#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6

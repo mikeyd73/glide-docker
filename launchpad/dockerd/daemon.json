@@ -1,0 +1,14 @@
+{
+  "dns": ["10.11.80.227","10.11.14.10","8.8.8.8"],
+  "dns-search": ["lab3.service-now.com","service-now.com"],
+  "hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"],
+  "ip-forward": true,
+  "iptables": true,
+  "storage-driver": "devicemapper",
+   "storage-opts": [
+     "dm.thinpooldev=/dev/mapper/docker-thinpool",
+     "dm.use_deferred_removal=true",
+     "dm.use_deferred_deletion=true"
+   ],
+  "debug": true
+}

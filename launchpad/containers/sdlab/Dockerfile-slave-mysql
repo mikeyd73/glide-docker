@@ -1,0 +1,34 @@
+FROM snc/centos-base:6.8
+MAINTAINER vitaliy.chupinin <vitaliy.chupinin@service-now.com>
+
+COPY mysql-conf/my.cnf /etc/my.cnf
+COPY mysql-conf/daemon-mysql /etc/init.d/mysql
+ADD ./config_mysql.sh /config_mysql.sh
+RUN chmod 755 /config_mysql.sh
+RUN /config_mysql.sh
+
+## make jenkins user ##
+ADD ./config_jenkins_user.sh /config_jenkins_user.sh
+RUN chmod 755 /config_jenkins_user.sh
+RUN /config_jenkins_user.sh
+
+##  configure sshd ##
+ADD ./config_sshd.sh /config_sshd.sh
+RUN chmod 755 /config_sshd.sh
+RUN /config_sshd.sh
+
+
+## cleanup ##
+RUN rm -f /config_jenkins_user.sh
+RUN rm -f /config_sshd.sh
+
+# copy supervisor conf
+ADD  supervisord-mysql-sshd.conf /etc/supervisord.conf
+
+EXPOSE 22
+
+VOLUME /qalab
+
+# start supervisor
+CMD ["/usr/bin/supervisord", "-n"]
+
